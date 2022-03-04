@@ -9,6 +9,7 @@ import {
 import React from "react";
 import Card from "./Card";
 import useFetch from "../../hooks/useFetch";
+import CountriesMenu from "../CountriesMenu";
 
 const test = [1, 2, 3, 4, 5, 6, 6, 7, 8, 8, 9, 4, 4, 1, 2];
 
@@ -18,8 +19,10 @@ const Body = () => {
 
   const { loadedData, loading } = useFetch("https://restcountries.com/v2/all");
   // console.log(loadedData);
+
   return (
     <Box bg={bg} h="100vh" w="100%">
+      <CountriesMenu />
       {loading && (
         <Flex h="100%" w="100%" justifyContent="center" alignItems="center">
           <Spinner
