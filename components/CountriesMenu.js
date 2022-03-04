@@ -6,17 +6,21 @@ import {
   ChevronDownIcon,
 } from "@chakra-ui/react";
 import React from "react";
+import { CountriesState } from "../context/Context";
 
 const CountriesMenu = () => {
+  const { region, setRegion } = CountriesState();
+  console.log(region);
   return (
     <Menu>
-      <MenuButton rightIcon={<ChevronDownIcon />}>Actions</MenuButton>
+      <MenuButton rightIcon={<ChevronDownIcon />}>Filter by Region</MenuButton>
       <MenuList>
-        <MenuItem>Download</MenuItem>
-        <MenuItem>Create a Copy</MenuItem>
-        <MenuItem>Mark as Draft</MenuItem>
-        <MenuItem>Delete</MenuItem>
-        <MenuItem>Attend a Workshop</MenuItem>
+        <MenuItem onClick={() => setRegion("All")}>All</MenuItem>
+        <MenuItem onClick={() => setRegion("Africa")}>Africa</MenuItem>
+        <MenuItem onClick={() => setRegion("Americas")}>Americas</MenuItem>
+        <MenuItem onClick={() => setRegion("Asia")}>Asia</MenuItem>
+        <MenuItem onClick={() => setRegion("Europe")}>Europe</MenuItem>
+        <MenuItem onClick={() => setRegion("Oceania")}>Oceania</MenuItem>
       </MenuList>
     </Menu>
   );

@@ -13,9 +13,22 @@ import CountriesMenu from "../CountriesMenu";
 import { CountriesState } from "../../context/Context";
 
 const Body = (props) => {
-  const { state } = CountriesState();
+  const { state, region } = CountriesState();
   const text = useColorModeValue("dark", "light");
   const bg = useColorModeValue("hsl(0, 0%, 98%)", "gray.800");
+
+  const test =
+    region === "All"
+      ? state.All
+      : region === "Africa"
+      ? state.Africa
+      : region === "Americas"
+      ? state.Americas
+      : region === "Asia"
+      ? state.Asia
+      : region === "Europe"
+      ? state.Europe
+      : state.Oceania;
 
   return (
     <Box bg={bg} h="100vh" w="100%">
@@ -37,7 +50,7 @@ const Body = (props) => {
         gridTemplateColumns="repeat(auto-fit, minmax(290px, 1fr))"
       >
         {!props.loading &&
-          state.all?.map((a) => (
+          test?.map((a) => (
             <GridItem
               h="380px"
               display="flex"

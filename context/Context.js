@@ -1,20 +1,21 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 import { CountriesReducer } from "./Reducer";
 
 const Countries = createContext();
 
 const CountriesContext = ({ children }) => {
+  const [region, setRegion] = useState("All");
   const [state, dispatch] = useReducer(CountriesReducer, {
-    all: [],
-    africa: [],
-    americas: [],
-    asia: [],
-    europe: [],
-    oceania: [],
+    All: [],
+    Africa: [],
+    Americas: [],
+    Asia: [],
+    Europe: [],
+    Oceania: [],
   });
 
   return (
-    <Countries.Provider value={{ state, dispatch }}>
+    <Countries.Provider value={{ state, dispatch, region, setRegion }}>
       {children}
     </Countries.Provider>
   );
