@@ -27,7 +27,7 @@ export default function Home() {
       </Head>
 
       <Header />
-      <Body />
+      <Body loading={loading} />
     </Box>
   );
 }
