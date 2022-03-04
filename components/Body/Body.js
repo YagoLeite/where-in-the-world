@@ -5,12 +5,14 @@ import {
   GridItem,
   useColorModeValue,
   Spinner,
+  Stack,
 } from "@chakra-ui/react";
 import React from "react";
 import Card from "./Card";
-import useFetch from "../../hooks/useFetch";
+
 import CountriesMenu from "../CountriesMenu";
 import { CountriesState } from "../../context/Context";
+import Search from "../Search";
 
 const Body = (props) => {
   const { state, region } = CountriesState();
@@ -31,8 +33,11 @@ const Body = (props) => {
       : state.Oceania;
 
   return (
-    <Box bg={bg} h="100vh" w="100%">
-      <CountriesMenu />
+    <Box bg={bg} h="100vh" w="100%" px="3%">
+      <Stack direction={["column", "row"]} justifyContent="space-between">
+        <Search />
+        <CountriesMenu />
+      </Stack>
       {props.loading && (
         <Flex h="100%" w="100%" justifyContent="center" alignItems="center">
           <Spinner
@@ -44,11 +49,7 @@ const Body = (props) => {
           />
         </Flex>
       )}
-      <Grid
-        h="100%"
-        mx="5%"
-        gridTemplateColumns="repeat(auto-fit, minmax(290px, 1fr))"
-      >
+      <Grid h="100%" gridTemplateColumns="repeat(auto-fit, minmax(290px, 1fr))">
         {!props.loading &&
           test?.map((a) => (
             <GridItem
