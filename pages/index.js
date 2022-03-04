@@ -1,11 +1,23 @@
 import { Box } from "@chakra-ui/react";
 import Head from "next/head";
-import { useEffect } from "react";
-import useFetch from "../hooks/useFetch";
 import Header from "../components/Header/Header";
 import Body from "../components/Body/Body";
+import useFetch from "../hooks/useFetch";
+import { CountriesState } from "../context/Context";
+import { useEffect } from "react";
 
 export default function Home() {
+  const { state, dispatch } = CountriesState();
+  const { loadedData, loading } = useFetch("https://restcountries.com/v2/all");
+
+  useEffect(() => {
+    if (loadedData) {
+      dispatch({ type: "FIRST-LOADING", value: loadedData });
+    }
+  }, [loadedData, dispatch]);
+
+  console.log(state);
+
   return (
     <Box>
       <Head>

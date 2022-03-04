@@ -17,7 +17,7 @@ const Body = () => {
   const bg = useColorModeValue("hsl(0, 0%, 98%)", "gray.800");
 
   const { loadedData, loading } = useFetch("https://restcountries.com/v2/all");
-  console.log(loadedData);
+  // console.log(loadedData);
   return (
     <Box bg={bg} h="100vh" w="100%">
       {loading && (
