@@ -6,13 +6,15 @@ export const CountriesReducer = (state, action) => {
     case "FIRST-LOADING":
       return {
         ...state,
-        All: action.value,
-        Africa: filtering(action.value, "Africa"),
-        Americas: filtering(action.value, "Americas"),
-        Asia: filtering(action.value, "Asia"),
-        Europe: filtering(action.value, "Europe"),
-        Oceania: filtering(action.value, "Oceania"),
+        all: action.value,
+        africa: filtering(action.value, "Africa"),
+        americas: filtering(action.value, "Americas"),
+        asia: filtering(action.value, "Asia"),
+        europe: filtering(action.value, "Europe"),
+        oceania: filtering(action.value, "Oceania"),
       };
+    case "INPUT-CHANGE":
+      return { ...state, input: action.value };
     default:
       return state;
   }

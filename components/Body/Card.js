@@ -8,7 +8,7 @@ const Card = (props) => {
       h="80%"
       w="80%"
       _hover={{ w: "90%", h: "90%" }}
-      boxShadow="dark-lg"
+      boxShadow="lg"
     >
       <Box w="100%" h="50%">
         <Image w="100%" h="100%" src={props.data.flag} />

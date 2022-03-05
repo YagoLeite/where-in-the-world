@@ -23,21 +23,25 @@ const Body = (props) => {
 
   const countriesList =
     region === "All"
-      ? state.All
+      ? state.all
       : region === "Africa"
-      ? state.Africa
+      ? state.africa
       : region === "Americas"
-      ? state.Americas
+      ? state.americas
       : region === "Asia"
-      ? state.Asia
+      ? state.asia
       : region === "Europe"
-      ? state.Europe
-      : state.Oceania;
+      ? state.europe
+      : state.oceania;
+
+  const searchFilteredList = countriesList.filter((country) =>
+    country.name.toLowerCase().includes(state.input.toLowerCase())
+  );
 
   return (
     <Box bg={bg} h="100vh" w="100%" px="3%">
       <Stack direction={["column", "row"]} justifyContent="space-between">
-        <Search />
+        <Search countriesList={countriesList} />
         <CountriesMenu />
         <Link href="/something">
           <Text>test</Text>
@@ -56,7 +60,20 @@ const Body = (props) => {
       )}
       <Grid h="100%" gridTemplateColumns="repeat(auto-fit, minmax(290px, 1fr))">
         {!props.loading &&
+          state.input === "" &&
           countriesList?.map((a) => (
+            <GridItem
+              h="380px"
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <Card data={a} />
+            </GridItem>
+          ))}
+        {!props.loading &&
+          state.input !== "" &&
+          searchFilteredList.map((a) => (
             <GridItem
               h="380px"
               display="flex"

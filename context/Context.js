@@ -6,12 +6,13 @@ const Countries = createContext();
 const CountriesContext = ({ children }) => {
   const [region, setRegion] = useState("All");
   const [state, dispatch] = useReducer(CountriesReducer, {
-    All: [],
-    Africa: [],
-    Americas: [],
-    Asia: [],
-    Europe: [],
-    Oceania: [],
+    all: [],
+    africa: [],
+    americas: [],
+    asia: [],
+    europe: [],
+    oceania: [],
+    input: "",
   });
 
   return (
