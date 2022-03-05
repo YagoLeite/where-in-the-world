@@ -3,7 +3,13 @@ import React from "react";
 
 const Card = (props) => {
   return (
-    <VStack h="80%" w="80%" _hover={{ w: "90%", h: "90%" }} boxShadow="dark-lg">
+    <VStack
+      className="test"
+      h="80%"
+      w="80%"
+      _hover={{ w: "90%", h: "90%" }}
+      boxShadow="dark-lg"
+    >
       <Box w="100%" h="50%">
         <Image w="100%" h="100%" src={props.data.flag} />
       </Box>

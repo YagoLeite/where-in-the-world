@@ -8,7 +8,7 @@ const Search = () => {
       <InputLeftElement color="gray.500">
         <FiSearch />
       </InputLeftElement>
-      <Input placeholder="Search for articles..." />
+      <Input placeholder="Search for countries..." />
     </InputGroup>
   );
 };

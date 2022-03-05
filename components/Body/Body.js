@@ -6,6 +6,7 @@ import {
   useColorModeValue,
   Spinner,
   Stack,
+  Text,
 } from "@chakra-ui/react";
 import React from "react";
 import Card from "./Card";
@@ -13,13 +14,14 @@ import Card from "./Card";
 import CountriesMenu from "../CountriesMenu";
 import { CountriesState } from "../../context/Context";
 import Search from "../Search";
+import Link from "next/link";
 
 const Body = (props) => {
   const { state, region } = CountriesState();
   const text = useColorModeValue("dark", "light");
   const bg = useColorModeValue("hsl(0, 0%, 98%)", "gray.800");
 
-  const test =
+  const countriesList =
     region === "All"
       ? state.All
       : region === "Africa"
@@ -37,6 +39,9 @@ const Body = (props) => {
       <Stack direction={["column", "row"]} justifyContent="space-between">
         <Search />
         <CountriesMenu />
+        <Link href="/something">
+          <Text>test</Text>
+        </Link>
       </Stack>
       {props.loading && (
         <Flex h="100%" w="100%" justifyContent="center" alignItems="center">
@@ -51,7 +56,7 @@ const Body = (props) => {
       )}
       <Grid h="100%" gridTemplateColumns="repeat(auto-fit, minmax(290px, 1fr))">
         {!props.loading &&
-          test?.map((a) => (
+          countriesList?.map((a) => (
             <GridItem
               h="380px"
               display="flex"
