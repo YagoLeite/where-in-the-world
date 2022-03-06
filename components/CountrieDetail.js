@@ -120,7 +120,7 @@ const CountrieDetail = () => {
   }
 
   return (
-    <>
+    <Box w="100%" h="100%">
       <Box onClick={() => route.back()}>Voltar</Box>
       {loading && (
         <Flex h="100%" w="100%" justifyContent="center" alignItems="center">
@@ -146,7 +146,11 @@ const CountrieDetail = () => {
         {/* {!loading && loadedData && firstInfo}
         {!loading && loadedData && secondInfo}
         {!loading && loadedData && borderCountries} */}
-        <Grid w="100%" gridTemplateColumns="repeat(2, 1fr)" bg="orange">
+        <Grid
+          w="100%"
+          gridTemplateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)"]}
+          bg="orange"
+        >
           {!loading && loadedData && <GridItem>{firstInfo} </GridItem>}
           {!loading && loadedData && <GridItem>{secondInfo} </GridItem>}
           {!loading && loadedData && (
@@ -156,7 +160,7 @@ const CountrieDetail = () => {
           )}
         </Grid>
       </Stack>
-    </>
+    </Box>
   );
 };
 

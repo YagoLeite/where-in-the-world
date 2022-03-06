@@ -4,7 +4,13 @@ import CountrieDetail from "../../components/CountrieDetail";
 
 const Wrapper = () => {
   return (
-    <VStack h="100%" bg="blue" justifyContent="center" alignItems="center">
+    <VStack
+      h="100%"
+      w="100%"
+      bg="blue"
+      justifyContent="center"
+      alignItems="center"
+    >
       <CountrieDetail />
     </VStack>
   );
