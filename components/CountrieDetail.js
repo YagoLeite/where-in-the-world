@@ -50,9 +50,36 @@ const CountrieDetail = () => {
         h="100%"
         fontSize="14px"
       >
-        <Text>Top Level Domain: </Text>
-        <Text>Currencies: asdasd</Text>
-        <Text>Languages: asdasd, asasd</Text>
+        <Flex>
+          <Text>Top Level Domain:</Text>
+          {loadedData[0].topLevelDomain.map((a, index) => {
+            if (index === loadedData[0].topLevelDomain.length - 1) {
+              return <Text key={index}>{a}</Text>;
+            } else {
+              return <Text key={index}>{a}, </Text>;
+            }
+          })}
+        </Flex>
+        <Flex>
+          <Text>Currencies:</Text>
+          {loadedData[0].currencies.map((a, index) => {
+            if (index === loadedData[0].currencies.length - 1) {
+              return <Text key={index}>{a.code}</Text>;
+            } else {
+              return <Text key={index}>{a.code}, </Text>;
+            }
+          })}
+        </Flex>
+        <Flex>
+          <Text>Languages:</Text>
+          {loadedData[0].languages.map((a, index) => {
+            if (index === loadedData[0].languages.length - 1) {
+              return <Text key={index}>{a.name}</Text>;
+            } else {
+              return <Text key={index}>{a.name}, </Text>;
+            }
+          })}
+        </Flex>
       </VStack>
     );
 
@@ -77,6 +104,7 @@ const CountrieDetail = () => {
     ) : (
       <Text>No borders found</Text>
     );
+    console.log(loadedData);
   }
 
   return (
