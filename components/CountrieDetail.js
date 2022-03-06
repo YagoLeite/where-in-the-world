@@ -8,10 +8,10 @@ import {
   GridItem,
   Flex,
   Spinner,
+  Image,
 } from "@chakra-ui/react";
 import useFetch from "../hooks/useFetch";
 import { CountriesState } from "../context/Context";
-import Link from "next/link";
 import { useRouter } from "next/router";
 
 const CountrieDetail = () => {
@@ -77,24 +77,11 @@ const CountrieDetail = () => {
     ) : (
       <Text>No borders found</Text>
     );
-    console.log(state);
   }
 
   return (
     <>
-      <Link href="/">voltar</Link>
-      {/* <Grid h="50%" w="80%" gridTemplateColumns="repeat(4, 1fr)" gap={10}>
-        <GridItem colStart="1" colEnd="3">
-          <Box w="100%" h="100%" bg="red"></Box>
-        </GridItem>
-        {!loading && loadedData && (
-          <>
-            <GridItem>{firstInfo}</GridItem>
-            <GridItem>{secondInfo}</GridItem>
-            <GridItem>{borderCountries} </GridItem>
-          </>
-        )}
-      </Grid> */}
+      <Box onClick={() => route.back()}>Voltar</Box>
       {loading && (
         <Flex h="100%" w="100%" justifyContent="center" alignItems="center">
           <Spinner
@@ -107,11 +94,19 @@ const CountrieDetail = () => {
         </Flex>
       )}
       <Stack direction={["column", "column", "column", "row"]} px="3%">
-        <Box bg="red" w="500px" h="450px"></Box>
+        {loadedData && (
+          <Box
+            bg="red"
+            w={["350px", "400px", "500px", "1000px"]}
+            h={["300px", "300px", "300px", "450px"]}
+          >
+            <Image src={loadedData[0].flag} w="100%" h="100%" />
+          </Box>
+        )}
         {/* {!loading && loadedData && firstInfo}
         {!loading && loadedData && secondInfo}
         {!loading && loadedData && borderCountries} */}
-        <Grid gridTemplateColumns="repeat(2, 1fr)" bg="orange">
+        <Grid w="100%" gridTemplateColumns="repeat(2, 1fr)" bg="orange">
           {!loading && loadedData && <GridItem>{firstInfo} </GridItem>}
           {!loading && loadedData && <GridItem>{secondInfo} </GridItem>}
           {!loading && loadedData && (
