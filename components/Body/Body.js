@@ -14,7 +14,6 @@ import Card from "./Card";
 import CountriesMenu from "../CountriesMenu";
 import { CountriesState } from "../../context/Context";
 import Search from "../Search";
-import Link from "next/link";
 
 const Body = (props) => {
   const { state, region } = CountriesState();
