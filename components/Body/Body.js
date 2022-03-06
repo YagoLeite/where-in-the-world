@@ -43,9 +43,6 @@ const Body = (props) => {
       <Stack direction={["column", "row"]} justifyContent="space-between">
         <Search countriesList={countriesList} />
         <CountriesMenu />
-        <Link href="/something">
-          <Text>test</Text>
-        </Link>
       </Stack>
       {props.loading && (
         <Flex h="100%" w="100%" justifyContent="center" alignItems="center">

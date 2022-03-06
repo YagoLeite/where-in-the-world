@@ -1,5 +1,14 @@
 import React from "react";
-import { Box, Stack, VStack, Text, Grid, GridItem } from "@chakra-ui/react";
+import {
+  Box,
+  Stack,
+  VStack,
+  Text,
+  Grid,
+  GridItem,
+  Flex,
+  Spinner,
+} from "@chakra-ui/react";
 import useFetch from "../hooks/useFetch";
 import { CountriesState } from "../context/Context";
 import Link from "next/link";
@@ -86,6 +95,17 @@ const CountrieDetail = () => {
           </>
         )}
       </Grid> */}
+      {loading && (
+        <Flex h="100%" w="100%" justifyContent="center" alignItems="center">
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="blue.500"
+            size="xl"
+          />
+        </Flex>
+      )}
       <Stack direction={["column", "column", "column", "row"]} px="3%">
         <Box bg="red" w="500px" h="450px"></Box>
         {/* {!loading && loadedData && firstInfo}
