@@ -1,7 +1,10 @@
 import { Box, VStack, Text, Image } from "@chakra-ui/react";
 import React from "react";
+import { useRouter } from "next/router";
 
 const Card = (props) => {
+  const router = useRouter();
+
   return (
     <VStack
       className="test"
@@ -9,6 +12,7 @@ const Card = (props) => {
       w="80%"
       _hover={{ w: "90%", h: "90%" }}
       boxShadow="lg"
+      onClick={() => router.push(props.data.name)}
     >
       <Box w="100%" h="50%">
         <Image w="100%" h="100%" src={props.data.flag} />

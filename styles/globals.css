@@ -15,5 +15,5 @@ a {
   box-sizing: border-box;
 }
 .test {
-  transition: ease 0.2s;
+  transition: ease 0.25s;
 }

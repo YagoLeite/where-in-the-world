@@ -16,8 +16,6 @@ export default function Home() {
     }
   }, [loadedData, dispatch]);
 
-  console.log(state);
-
   return (
     <Box>
       <Head>

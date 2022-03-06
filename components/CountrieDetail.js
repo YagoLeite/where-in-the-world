@@ -3,15 +3,18 @@ import { Box, Stack, VStack, Text, Grid, GridItem } from "@chakra-ui/react";
 import useFetch from "../hooks/useFetch";
 import { CountriesState } from "../context/Context";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const CountrieDetail = () => {
+  const route = useRouter();
+  const name = route.query.countryName;
+  console.log(name);
   const { loadedData, loading } = useFetch(
-    "https://restcountries.com/v2/name/peru"
+    `https://restcountries.com/v2/name/${route.query.countryName}`
   );
 
   const { state } = CountriesState();
 
-  console.log(loadedData);
   if (loadedData) {
     const firstInfo = (
       <VStack
@@ -44,22 +47,27 @@ const CountrieDetail = () => {
       </VStack>
     );
 
-    const borderCountries = loadedData[0].borders.map((border, index) => {
-      const borderCountriesToName = state.All.filter(
-        (country) => country.alpha3Code === border
-      );
-      return (
-        <Text
-          h="fit-content"
-          w="fit-content"
-          borderWidth="1px"
-          shadow="dark-lg"
-          key={index}
-        >
-          {borderCountriesToName[0]?.name}
-        </Text>
-      );
-    });
+    const borderCountries = loadedData[0].borders ? (
+      loadedData[0].borders.map((border, index) => {
+        const borderCountriesToName = state.all.filter(
+          (country) => country.alpha3Code === border
+        );
+        return (
+          <Text
+            h="fit-content"
+            w="fit-content"
+            borderWidth="1px"
+            shadow="dark-lg"
+            key={index}
+            onClick={() => route.push(borderCountriesToName[0]?.name)}
+          >
+            {borderCountriesToName[0]?.name}
+          </Text>
+        );
+      })
+    ) : (
+      <Text>No borders found</Text>
+    );
     console.log(state);
   }
 
