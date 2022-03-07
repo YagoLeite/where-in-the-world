@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   Stack,
@@ -9,12 +9,15 @@ import {
   Flex,
   Spinner,
   Image,
+  ScaleFade,
+  useDisclosure,
 } from "@chakra-ui/react";
 import useFetch from "../hooks/useFetch";
 import { CountriesState } from "../context/Context";
 import { useRouter } from "next/router";
 
 const CountrieDetail = () => {
+  const { isOpen, onToggle } = useDisclosure();
   const route = useRouter();
   const name = route.query.countryName;
   console.log(name);
@@ -23,6 +26,12 @@ const CountrieDetail = () => {
   );
 
   const { state } = CountriesState();
+
+  useEffect(() => {
+    if (loadedData && !isOpen) {
+      onToggle();
+    }
+  }, [loadedData]);
 
   if (loadedData) {
     const firstInfo = (
@@ -133,33 +142,40 @@ const CountrieDetail = () => {
           />
         </Flex>
       )}
-      <Stack direction={["column", "column", "column", "row"]} px="3%">
-        {loadedData && (
-          <Box
-            bg="red"
-            w={["350px", "400px", "500px", "1000px"]}
-            h={["300px", "300px", "300px", "450px"]}
-          >
-            <Image src={loadedData[0].flag} w="100%" h="100%" />
-          </Box>
-        )}
-        {/* {!loading && loadedData && firstInfo}
-        {!loading && loadedData && secondInfo}
-        {!loading && loadedData && borderCountries} */}
-        <Grid
-          w="100%"
-          gridTemplateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)"]}
-          bg="orange"
-        >
-          {!loading && loadedData && <GridItem>{firstInfo} </GridItem>}
-          {!loading && loadedData && <GridItem>{secondInfo} </GridItem>}
-          {!loading && loadedData && (
-            <GridItem display="flex" gap={2} colStart={1} colEnd={-1} bg="red">
-              Border Countries: {borderCountries}
-            </GridItem>
-          )}
-        </Grid>
-      </Stack>
+      {loadedData && !loading && (
+        <ScaleFade in={isOpen} initialScale={0.9} offsetY="20px">
+          <Stack direction={["column", "column", "column", "row"]} px="3%">
+            {loadedData && (
+              <Box
+                bg="red"
+                w={["350px", "400px", "500px", "1000px"]}
+                h={["300px", "300px", "300px", "450px"]}
+              >
+                <Image src={loadedData[0].flag} w="100%" h="100%" />
+              </Box>
+            )}
+            <Grid
+              w="100%"
+              gridTemplateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)"]}
+              bg="orange"
+            >
+              {!loading && loadedData && <GridItem>{firstInfo} </GridItem>}
+              {!loading && loadedData && <GridItem>{secondInfo} </GridItem>}
+              {!loading && loadedData && (
+                <GridItem
+                  display="flex"
+                  gap={2}
+                  colStart={1}
+                  colEnd={-1}
+                  bg="red"
+                >
+                  Border Countries: {borderCountries}
+                </GridItem>
+              )}
+            </Grid>
+          </Stack>
+        </ScaleFade>
+      )}
     </Box>
   );
 };
