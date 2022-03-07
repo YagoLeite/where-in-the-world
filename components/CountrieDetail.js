@@ -146,13 +146,9 @@ const CountrieDetail = () => {
         <ScaleFade in={isOpen} initialScale={0.9} offsetY="20px">
           <Stack direction={["column", "column", "column", "row"]} px="3%">
             {loadedData && (
-              <Box
-                bg="red"
-                w={["350px", "400px", "500px", "1000px"]}
-                h={["300px", "300px", "300px", "450px"]}
-              >
+              <Flex bg="red" w="100%" h="100%">
                 <Image src={loadedData[0].flag} w="100%" h="100%" />
-              </Box>
+              </Flex>
             )}
             <Grid
               w="100%"
