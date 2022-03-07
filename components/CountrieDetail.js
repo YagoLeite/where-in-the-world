@@ -135,13 +135,15 @@ const CountrieDetail = () => {
       )}
       <Stack direction={["column", "column", "column", "row"]} px="3%">
         {loadedData && (
-          <Box
-            bg="red"
-            w={["350px", "400px", "500px", "1000px"]}
-            h={["300px", "300px", "300px", "450px"]}
+          <Flex
+            justifyContent="center"
+            alignItems="center"
+            w="100%"
+            h="100%"
+            maxH="100%"
           >
             <Image src={loadedData[0].flag} w="100%" h="100%" />
-          </Box>
+          </Flex>
         )}
         {/* {!loading && loadedData && firstInfo}
         {!loading && loadedData && secondInfo}
