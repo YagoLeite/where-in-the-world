@@ -23,9 +23,18 @@ const Card = (props) => {
         <Text pb="4%" fontWeight={600}>
           {props.data?.name}
         </Text>
-        <Text fontWeight={300}>Population : {props.data.population}</Text>
-        <Text fontWeight={300}>Region: {props.data.region}</Text>
-        <Text fontWeight={300}>Capital: {props.data.capital} </Text>
+        <Flex gap={1}>
+          <Text fontWeight={600}>Population :</Text>
+          <Text fontWeight={300}>{props.data.population}</Text>
+        </Flex>
+        <Flex gap={1}>
+          <Text fontWeight={600}>Region: </Text>
+          <Text fontWeight={300}>{props.data.region}</Text>
+        </Flex>
+        <Flex gap={1}>
+          <Text fontWeight={600}>Capital: </Text>
+          <Text fontWeight={300}>{props.data.capital}</Text>
+        </Flex>
       </Box>
     </VStack>
   );
