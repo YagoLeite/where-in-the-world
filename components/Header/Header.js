@@ -45,7 +45,13 @@ const Header = () => {
           <Flex w="full" h="full" px="6" align="center" justify="space-between">
             <Flex align="center" w="100%">
               <Link href="/">
-                <Text>Where in the world?</Text>
+                <Text
+                  w="100%"
+                  fontWeight={800}
+                  fontSize={["20px", "24px", "28px"]}
+                >
+                  Where in the world?
+                </Text>
               </Link>
             </Flex>
 

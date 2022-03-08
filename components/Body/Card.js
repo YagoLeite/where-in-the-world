@@ -1,4 +1,4 @@
-import { Box, VStack, Text, Image } from "@chakra-ui/react";
+import { Box, VStack, Text, Image, Flex } from "@chakra-ui/react";
 import React from "react";
 import { useRouter } from "next/router";
 
@@ -13,15 +13,19 @@ const Card = (props) => {
       _hover={{ w: "90%", h: "90%" }}
       boxShadow="lg"
       onClick={() => router.push(props.data.name)}
+      cursor="pointer"
+      maxW="400px"
     >
-      <Box w="100%" h="50%">
+      <Flex justifyContent="center" alignItems="center" w="100%" h="50%">
         <Image w="100%" h="100%" src={props.data.flag} />
-      </Box>
+      </Flex>
       <Box w="80%">
-        <Text pb="4%">{props.data?.name}</Text>
-        <Text>Population : {props.data.population}</Text>
-        <Text>Region: {props.data.region}</Text>
-        <Text>Capital: {props.data.capital} </Text>
+        <Text pb="4%" fontWeight={600}>
+          {props.data?.name}
+        </Text>
+        <Text fontWeight={300}>Population : {props.data.population}</Text>
+        <Text fontWeight={300}>Region: {props.data.region}</Text>
+        <Text fontWeight={300}>Capital: {props.data.capital} </Text>
       </Box>
     </VStack>
   );
