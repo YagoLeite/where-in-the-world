@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, VStack } from "@chakra-ui/react";
 import CountrieDetail from "../../components/CountrieDetail";
+import Test from "../../components/Test";
 
 const Wrapper = () => {
   return (
@@ -10,8 +11,10 @@ const Wrapper = () => {
       bg="blue"
       justifyContent="center"
       alignItems="center"
+      p="3%"
     >
       <CountrieDetail />
+      {/* <Test /> */}
     </VStack>
   );
 };
