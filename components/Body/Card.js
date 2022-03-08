@@ -20,10 +20,12 @@ const Card = (props) => {
         <Image w="100%" h="100%" src={props.data.flag} />
       </Flex>
       <Box w="80%">
-        <Text pb="4%">{props.data?.name}</Text>
-        <Text>Population : {props.data.population}</Text>
-        <Text>Region: {props.data.region}</Text>
-        <Text>Capital: {props.data.capital} </Text>
+        <Text pb="4%" fontWeight={600}>
+          {props.data?.name}
+        </Text>
+        <Text fontWeight={300}>Population : {props.data.population}</Text>
+        <Text fontWeight={300}>Region: {props.data.region}</Text>
+        <Text fontWeight={300}>Capital: {props.data.capital} </Text>
       </Box>
     </VStack>
   );

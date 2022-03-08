@@ -38,7 +38,7 @@ const Body = (props) => {
   );
 
   return (
-    <Box bg={bg} h="100vh" w="100%" px="3%">
+    <Box bg={bg} h="100vh" w="100%" p="3%">
       <Stack direction={["column", "row"]} justifyContent="space-between">
         <Search countriesList={countriesList} />
         <CountriesMenu />
