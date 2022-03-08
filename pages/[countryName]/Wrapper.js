@@ -10,7 +10,7 @@ const Wrapper = () => {
       w="100%"
       justifyContent="center"
       alignItems="center"
-      p="3%"
+      px="3%"
     >
       <CountrieDetail />
       {/* <Test /> */}

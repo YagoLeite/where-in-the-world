@@ -17,6 +17,7 @@ const CountriesMenu = () => {
         bg="transparent"
         as={Button}
         rightIcon={<IoIosArrowDown />}
+        maxW="300px"
       >
         Filter by Region
       </MenuButton>

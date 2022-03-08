@@ -154,21 +154,19 @@ const CountrieDetail = () => {
           (country) => country.alpha3Code === border
         );
         return (
-          <GridItem>
-            <Button
-              bg="transparent"
-              _hover={{ bg: "transparent" }}
-              _active={{ bg: "transparent" }}
-              h="fit-content"
-              w="fit-content"
-              borderWidth="1px"
-              shadow="dark-lg"
-              key={index}
-              onClick={() => route.push(borderCountriesToName[0]?.name)}
-            >
-              {borderCountriesToName[0]?.name}
-            </Button>
-          </GridItem>
+          <Button
+            bg="transparent"
+            _hover={{ bg: "transparent" }}
+            _active={{ bg: "transparent" }}
+            h="fit-content"
+            w="fit-content"
+            borderWidth="3px"
+            shadow="lg"
+            key={index}
+            onClick={() => route.push(borderCountriesToName[0]?.name)}
+          >
+            {borderCountriesToName[0]?.name}
+          </Button>
         );
       })
     ) : (
@@ -197,7 +195,7 @@ const CountrieDetail = () => {
               maxW="100px"
               alignSelf="left"
               borderWidth="1px"
-              shadow="dark-lg"
+              shadow="lg"
               _hover={{ bg: "transparent" }}
               _active={{ bg: "transparent" }}
               onClick={() => route.back()}
@@ -207,7 +205,7 @@ const CountrieDetail = () => {
             </Button>
             <Stack gap={3} direction={["column", "column", "column", "row"]}>
               {loadedData && (
-                <Flex w="100%" h="100%">
+                <Flex>
                   <Image src={loadedData[0].flag} w="100%" h="100%" />
                 </Flex>
               )}
@@ -221,13 +219,10 @@ const CountrieDetail = () => {
                 {!loading && loadedData && (
                   <GridItem display="flex" gap={2} colStart={1} colEnd={-1}>
                     <HStack w="100%">
-                      <Text>Border Countries:</Text>
-                      <Grid
-                        w="100%"
-                        templateColumns="repeat(auto-fit, minmax(15px, 1fr))"
-                      >
+                      <Text fontWeight={800}>Border Countries:</Text>
+                      <HStack w="100%" h="fit-content" gap={1}>
                         {borderCountries}
-                      </Grid>
+                      </HStack>
                     </HStack>
                   </GridItem>
                 )}
