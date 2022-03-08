@@ -11,6 +11,8 @@ import {
   Image,
   ScaleFade,
   useDisclosure,
+  Button,
+  HStack,
 } from "@chakra-ui/react";
 import useFetch from "../hooks/useFetch";
 import { CountriesState } from "../context/Context";
@@ -110,27 +112,30 @@ const CountrieDetail = () => {
           (country) => country.alpha3Code === border
         );
         return (
-          <Text
-            h="fit-content"
-            w="fit-content"
-            borderWidth="1px"
-            shadow="dark-lg"
-            key={index}
-            onClick={() => route.push(borderCountriesToName[0]?.name)}
-          >
-            {borderCountriesToName[0]?.name}
-          </Text>
+          <GridItem bg="red">
+            <Button
+              bg="transparent"
+              _hover={{ bg: "transparent" }}
+              _active={{ bg: "transparent" }}
+              h="fit-content"
+              w="fit-content"
+              borderWidth="1px"
+              shadow="dark-lg"
+              key={index}
+              onClick={() => route.push(borderCountriesToName[0]?.name)}
+            >
+              {borderCountriesToName[0]?.name}
+            </Button>
+          </GridItem>
         );
       })
     ) : (
       <Text>No borders found</Text>
     );
-    console.log(loadedData);
   }
 
   return (
     <Box w="100%" h="100%">
-      <Box onClick={() => route.back()}>Voltar</Box>
       {loading && (
         <Flex h="100%" w="100%" justifyContent="center" alignItems="center">
           <Spinner
@@ -144,31 +149,53 @@ const CountrieDetail = () => {
       )}
       {loadedData && !loading && (
         <ScaleFade in={isOpen} initialScale={0.9} offsetY="20px">
-          <Stack direction={["column", "column", "column", "row"]} px="3%">
-            {loadedData && (
-              <Flex bg="red" w="100%" h="100%">
-                <Image src={loadedData[0].flag} w="100%" h="100%" />
-              </Flex>
-            )}
-            <Grid
-              w="100%"
-              gridTemplateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)"]}
-              bg="orange"
+          <Stack direction="column" gap={2}>
+            <Button
+              bg="transparent"
+              maxW="80px"
+              alignSelf="left"
+              borderWidth="1px"
+              shadow="dark-lg"
+              _hover={{ bg: "transparent" }}
+              _active={{ bg: "transparent" }}
+              onClick={() => route.back()}
             >
-              {!loading && loadedData && <GridItem>{firstInfo} </GridItem>}
-              {!loading && loadedData && <GridItem>{secondInfo} </GridItem>}
-              {!loading && loadedData && (
-                <GridItem
-                  display="flex"
-                  gap={2}
-                  colStart={1}
-                  colEnd={-1}
-                  bg="red"
-                >
-                  Border Countries: {borderCountries}
-                </GridItem>
+              Voltar
+            </Button>
+            <Stack direction={["column", "column", "column", "row"]}>
+              {loadedData && (
+                <Flex bg="red" w="100%" h="100%">
+                  <Image src={loadedData[0].flag} w="100%" h="100%" />
+                </Flex>
               )}
-            </Grid>
+              <Grid
+                w="100%"
+                gridTemplateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)"]}
+                bg="orange"
+              >
+                {!loading && loadedData && <GridItem>{firstInfo} </GridItem>}
+                {!loading && loadedData && <GridItem>{secondInfo} </GridItem>}
+                {!loading && loadedData && (
+                  <GridItem
+                    display="flex"
+                    gap={2}
+                    colStart={1}
+                    colEnd={-1}
+                    bg="gray"
+                  >
+                    <HStack bg="yellow" w="100%">
+                      <Text>Border Countries:</Text>
+                      <Grid
+                        w="100%"
+                        templateColumns="repeat(auto-fit, minmax(15px, 1fr))"
+                      >
+                        {borderCountries}
+                      </Grid>
+                    </HStack>
+                  </GridItem>
+                )}
+              </Grid>
+            </Stack>
           </Stack>
         </ScaleFade>
       )}

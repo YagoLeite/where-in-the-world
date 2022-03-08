@@ -1,10 +1,6 @@
-import {
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  ChevronDownIcon,
-} from "@chakra-ui/react";
+import { Menu, MenuButton, MenuList, MenuItem, Button } from "@chakra-ui/react";
+import { IoIosArrowDown } from "react-icons/io";
+
 import React from "react";
 import { CountriesState } from "../context/Context";
 
@@ -13,7 +9,17 @@ const CountriesMenu = () => {
   console.log(region);
   return (
     <Menu>
-      <MenuButton rightIcon={<ChevronDownIcon />}>Filter by Region</MenuButton>
+      <MenuButton
+        borderWidth="1px"
+        shadow="lg"
+        _hover={{ bg: "transparent" }}
+        _active={{ bg: "transparent" }}
+        bg="transparent"
+        as={Button}
+        rightIcon={<IoIosArrowDown />}
+      >
+        Filter by Region
+      </MenuButton>
       <MenuList>
         <MenuItem onClick={() => setRegion("All")}>All</MenuItem>
         <MenuItem onClick={() => setRegion("Africa")}>Africa</MenuItem>
