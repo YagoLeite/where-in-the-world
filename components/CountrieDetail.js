@@ -130,7 +130,9 @@ const CountrieDetail = () => {
 
   return (
     <Box w="100%" h="100%">
-      <Box onClick={() => route.back()}>Voltar</Box>
+      <Box alignSelf="left" onClick={() => route.back()}>
+        Voltar
+      </Box>
       {loading && (
         <Flex h="100%" w="100%" justifyContent="center" alignItems="center">
           <Spinner
@@ -153,18 +155,11 @@ const CountrieDetail = () => {
             <Grid
               w="100%"
               gridTemplateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)"]}
-              bg="orange"
             >
               {!loading && loadedData && <GridItem>{firstInfo} </GridItem>}
               {!loading && loadedData && <GridItem>{secondInfo} </GridItem>}
               {!loading && loadedData && (
-                <GridItem
-                  display="flex"
-                  gap={2}
-                  colStart={1}
-                  colEnd={-1}
-                  bg="red"
-                >
+                <GridItem display="flex" gap={2} colStart={1} colEnd={-1}>
                   Border Countries: {borderCountries}
                 </GridItem>
               )}
