@@ -5,7 +5,7 @@ import Wrapper from "./Wrapper";
 
 const index = () => {
   return (
-    <Box h="100%" w="100%">
+    <Box h="100%" minH="100vh" w="100%">
       <Header />
       <Wrapper />
     </Box>

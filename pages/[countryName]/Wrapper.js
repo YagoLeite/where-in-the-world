@@ -8,7 +8,6 @@ const Wrapper = () => {
     <VStack
       h="100%"
       w="100%"
-      bg="blue"
       justifyContent="center"
       alignItems="center"
       p="3%"

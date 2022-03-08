@@ -8,7 +8,6 @@ import {
   Link,
   useColorMode,
   useColorModeValue,
-  useDisclosure,
   Box,
   Text,
 } from "@chakra-ui/react";
@@ -61,6 +60,7 @@ const Header = () => {
               maxW="824px"
               align="center"
               color="gray.400"
+              gap={1}
             >
               <HStack>
                 <Link
