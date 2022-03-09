@@ -158,9 +158,9 @@ const CountrieDetail = () => {
             bg="transparent"
             _hover={{ bg: "transparent" }}
             _active={{ bg: "transparent" }}
-            h="fit-content"
-            w="fit-content"
             borderWidth="3px"
+            w="fit-content"
+            p="2%"
             shadow="lg"
             key={index}
             onClick={() => route.push(borderCountriesToName[0]?.name)}
@@ -222,17 +222,27 @@ const CountrieDetail = () => {
                 {!loading && loadedData && <GridItem>{secondInfo} </GridItem>}
                 {!loading && loadedData && (
                   <GridItem display="flex" gap={2} colStart={1} colEnd={-1}>
-                    <HStack w="100%" h="100%">
+                    <HStack w="100%" h="100%" bg="blue">
                       <Text fontWeight={800}>Border Countries:</Text>
-                      <Flex
-                        w="100%"
-                        h="100%"
-                        justifyContent="center"
+                      {/* <Flex
+                        w="fit-content"
+                        h="600px"
+                        justifyContent="start"
                         alignItems="center"
                         gap={1}
                       >
                         {borderCountries}
-                      </Flex>
+                      </Flex> */}
+                      {/* <Grid
+                        bg="green"
+                        gap={2}
+                        w="100%"
+                        h="100%"
+                        gridTemplateColumns="repeat( auto-fit, minmax(250px, 300px))"
+                      >
+                        {borderCountries}
+                      </Grid> */}
+                      <Stack direction="row">{borderCountries}</Stack>
                     </HStack>
                   </GridItem>
                 )}
