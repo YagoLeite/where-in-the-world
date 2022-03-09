@@ -218,11 +218,17 @@ const CountrieDetail = () => {
                 {!loading && loadedData && <GridItem>{secondInfo} </GridItem>}
                 {!loading && loadedData && (
                   <GridItem display="flex" gap={2} colStart={1} colEnd={-1}>
-                    <HStack w="100%">
+                    <HStack w="100%" h="100%">
                       <Text fontWeight={800}>Border Countries:</Text>
-                      <HStack w="100%" h="fit-content" gap={1}>
+                      <Flex
+                        w="100%"
+                        h="100%"
+                        justifyContent="center"
+                        alignItems="center"
+                        gap={1}
+                      >
                         {borderCountries}
-                      </HStack>
+                      </Flex>
                     </HStack>
                   </GridItem>
                 )}
