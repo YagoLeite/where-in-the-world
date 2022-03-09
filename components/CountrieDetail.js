@@ -92,7 +92,7 @@ const CountrieDetail = () => {
               } else {
                 return (
                   <Text fontWeight={300} key={index}>
-                    {a},{" "}
+                    {a},
                   </Text>
                 );
               }
@@ -142,7 +142,7 @@ const CountrieDetail = () => {
               }
             })
           ) : (
-            <Text>No languages found.</Text>
+            <Text fontWeight={300}>No languages found.</Text>
           )}
         </Flex>
       </VStack>
@@ -177,7 +177,11 @@ const CountrieDetail = () => {
   return (
     <Box w="100%" h="100%">
       {loading && (
-        <Flex h="100%" w="100%" justifyContent="center" alignItems="center">
+        <Flex
+          h="calc(100vh - 4.5rem)"
+          justifyContent="center"
+          alignItems="center"
+        >
           <Spinner
             thickness="4px"
             speed="0.65s"
