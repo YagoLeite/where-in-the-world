@@ -18,6 +18,8 @@ import useFetch from "../hooks/useFetch";
 import { CountriesState } from "../context/Context";
 import { useRouter } from "next/router";
 import { BiArrowBack } from "react-icons/bi";
+import LeftDetail from "./details/LeftDetail";
+import RightDetail from "./details/RightDetail";
 
 const CountrieDetail = () => {
   const { isOpen, onToggle } = useDisclosure();
@@ -37,136 +39,30 @@ const CountrieDetail = () => {
   }, [loadedData]);
 
   if (loadedData) {
-    const firstInfo = (
-      <VStack
-        alignItems="left"
-        justifyContent="center"
-        w="100%"
-        h="100%"
-        fontSize="14px"
-      >
-        <Text fontWeight={800} fontSize="18px">
-          {loadedData[0].name}
-        </Text>
-        <Flex gap={1}>
-          <Text fontWeight={600}>Native Name: </Text>
-          <Text fontWeight={300}>{loadedData[0].nativeName}</Text>
-        </Flex>
-        <Flex gap={1}>
-          <Text fontWeight={600}>Population: </Text>
-          <Text fontWeight={300}>{loadedData[0].population}</Text>
-        </Flex>
-        <Flex gap={1}>
-          <Text fontWeight={600}>Region: </Text>
-          <Text fontWeight={300}>{loadedData[0].region}</Text>
-        </Flex>
-        <Flex gap={1}>
-          <Text fontWeight={600}>Sub Region: </Text>
-          <Text fontWeight={300}>{loadedData[0].subregion}</Text>
-        </Flex>
-        <Flex gap={1}>
-          <Text fontWeight={600}>Capital: </Text>
-          <Text fontWeight={300}>{loadedData[0].capital}</Text>
-        </Flex>
-      </VStack>
-    );
-
-    const secondInfo = (
-      <VStack
-        alignItems="left"
-        justifyContent="center"
-        w="100%"
-        h="100%"
-        fontSize="14px"
-      >
-        <Flex gap={1}>
-          <Text fontWeight={600}>Top Level Domain:</Text>
-          {loadedData[0].topLevelDomain ? (
-            loadedData[0].topLevelDomain.map((a, index) => {
-              if (index === loadedData[0].topLevelDomain.length - 1) {
-                return (
-                  <Text fontWeight={300} key={index}>
-                    {a}
-                  </Text>
-                );
-              } else {
-                return (
-                  <Text fontWeight={300} key={index}>
-                    {a},
-                  </Text>
-                );
-              }
-            })
-          ) : (
-            <Text>No Top Level Domain found.</Text>
-          )}
-        </Flex>
-        <Flex gap={1}>
-          <Text fontWeight={600}>Currencies:</Text>
-          {loadedData[0].currencies ? (
-            loadedData[0].currencies.map((a, index) => {
-              if (index === loadedData[0].currencies.length - 1) {
-                return (
-                  <Text fontWeight={300} key={index}>
-                    {a.code}
-                  </Text>
-                );
-              } else {
-                return (
-                  <Text fontWeight={300} key={index}>
-                    {a.code},
-                  </Text>
-                );
-              }
-            })
-          ) : (
-            <Text>No currencies found.</Text>
-          )}
-        </Flex>
-        <Flex gap={1}>
-          <Text fontWeight={600}>Languages:</Text>
-          {loadedData[0].languages ? (
-            loadedData[0].languages.map((a, index) => {
-              if (index === loadedData[0].languages.length - 1) {
-                return (
-                  <Text fontWeight={300} key={index}>
-                    {a.name}
-                  </Text>
-                );
-              } else {
-                return (
-                  <Text fontWeight={300} key={index}>
-                    {a.name},
-                  </Text>
-                );
-              }
-            })
-          ) : (
-            <Text fontWeight={300}>No languages found.</Text>
-          )}
-        </Flex>
-      </VStack>
-    );
-
     const borderCountries = loadedData[0].borders ? (
       loadedData[0].borders.map((border, index) => {
         const borderCountriesToName = state.all.filter(
           (country) => country.alpha3Code === border
         );
         return (
-          <Button
-            bg="transparent"
-            _hover={{ bg: "transparent" }}
-            _active={{ bg: "transparent" }}
-            borderWidth="3px"
-            w="fit-content"
-            p="2%"
-            shadow="lg"
-            key={index}
-            onClick={() => route.push(borderCountriesToName[0]?.name)}
-          >
-            {borderCountriesToName[0]?.name}
-          </Button>
+          <Flex h="100%" w="100%" justifyContent="center" alignItems="center">
+            <Button
+              className="test"
+              bg="transparent"
+              _hover={{ bg: "transparent" }}
+              _active={{ bg: "transparent" }}
+              borderWidth="3px"
+              w="fit-content"
+              h="fit-content"
+              p="2%"
+              shadow="lg"
+              key={index}
+              onClick={() => route.push(borderCountriesToName[0]?.name)}
+              wordBreak="break-all"
+            >
+              {borderCountriesToName[0]?.name}
+            </Button>
+          </Flex>
         );
       })
     ) : (
@@ -218,32 +114,27 @@ const CountrieDetail = () => {
                 gap={3}
                 gridTemplateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)"]}
               >
-                {!loading && loadedData && <GridItem>{firstInfo} </GridItem>}
-                {!loading && loadedData && <GridItem>{secondInfo} </GridItem>}
+                {!loading && loadedData && <LeftDetail data={loadedData[0]} />}
+                {!loading && loadedData && <RightDetail data={loadedData[0]} />}
                 {!loading && loadedData && (
                   <GridItem display="flex" gap={2} colStart={1} colEnd={-1}>
-                    <HStack w="100%" h="100%" bg="blue">
+                    <HStack w="100%" h="100%">
                       <Text fontWeight={800}>Border Countries:</Text>
-                      {/* <Flex
-                        w="fit-content"
-                        h="600px"
-                        justifyContent="start"
-                        alignItems="center"
-                        gap={1}
-                      >
-                        {borderCountries}
-                      </Flex> */}
-                      {/* <Grid
-                        bg="green"
-                        gap={2}
+                      <Grid
+                        bg="red"
+                        maxW="100%"
                         w="100%"
                         h="100%"
-                        gridTemplateColumns="repeat( auto-fit, minmax(250px, 300px))"
+                        gap={2}
+                        gridTemplateColumns="repeat(auto-fit, minmax(50px, 300px))"
                       >
                         {borderCountries}
-                      </Grid> */}
-                      <Stack direction="row">{borderCountries}</Stack>
+                      </Grid>
                     </HStack>
+                    {/* <Grid gridTemplateColumns="repeat(auto-fit, minmax(50px, 1fr))">
+                      <Text fontWeight={800}>Border Countries:</Text>
+                      {borderCountries}
+                    </Grid> */}
                   </GridItem>
                 )}
               </Grid>
