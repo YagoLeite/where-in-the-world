@@ -22,6 +22,7 @@ const Card = (props) => {
         w="100%"
         h="50%"
         maxH="50%"
+        overflow="hidden"
       >
         <Image objectFit="cover" src={props.data.flag} />
       </Flex>
