@@ -45,7 +45,13 @@ const CountrieDetail = () => {
           (country) => country.alpha3Code === border
         );
         return (
-          <Flex h="100%" w="100%" justifyContent="center" alignItems="center">
+          <Flex
+            key={index}
+            h="100%"
+            w="100%"
+            justifyContent="center"
+            alignItems="center"
+          >
             <Text
               className="test"
               bg="transparent"
@@ -58,7 +64,6 @@ const CountrieDetail = () => {
               p="2%"
               shadow="lg"
               cursor="pointer"
-              key={index}
               onClick={() => route.push(borderCountriesToName[0]?.name)}
               wordBreak="break-all"
             >
