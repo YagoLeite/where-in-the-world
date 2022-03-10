@@ -16,11 +16,17 @@ const Card = (props) => {
       cursor="pointer"
       maxW="400px"
     >
-      <Flex justifyContent="center" alignItems="center" w="100%" h="50%">
-        <Image w="100%" h="100%" src={props.data.flag} />
+      <Flex
+        justifyContent="center"
+        alignItems="center"
+        w="100%"
+        h="50%"
+        maxH="50%"
+      >
+        <Image objectFit="cover" src={props.data.flag} />
       </Flex>
       <Box w="80%">
-        <Text pb="4%" fontWeight={600}>
+        <Text py="4%" fontWeight={600}>
           {props.data?.name}
         </Text>
         <Flex gap={1}>

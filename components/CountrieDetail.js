@@ -113,7 +113,7 @@ const CountrieDetail = () => {
             <Stack gap={3} direction={["column", "column", "column", "row"]}>
               {loadedData && (
                 <Flex>
-                  <Image src={loadedData[0].flag} w="100%" h="100%" />
+                  <Image src={loadedData[0].flag} objectFit="cover" />
                 </Flex>
               )}
               <Grid
@@ -135,10 +135,6 @@ const CountrieDetail = () => {
                         {borderCountries}
                       </Grid>
                     </HStack>
-                    {/* <Grid gridTemplateColumns="repeat(auto-fit, minmax(50px, 1fr))">
-                      <Text fontWeight={800}>Border Countries:</Text>
-                      {borderCountries}
-                    </Grid> */}
                   </GridItem>
                 )}
               </Grid>
