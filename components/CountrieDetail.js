@@ -58,7 +58,7 @@ const CountrieDetail = () => {
               _hover={{ bg: "transparent" }}
               _active={{ bg: "transparent" }}
               borderWidth="3px"
-              w="140px"
+              w="150px"
               textAlign="center"
               h="fit-content"
               p="2%"
