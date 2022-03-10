@@ -60,24 +60,26 @@ const Body = (props) => {
       <Grid h="100%" gridTemplateColumns="repeat(auto-fit, minmax(290px, 1fr))">
         {!props.loading &&
           state.input === "" &&
-          countriesList?.map((a) => (
+          countriesList?.map((a, index) => (
             <GridItem
               h="380px"
               display="flex"
               justifyContent="center"
               alignItems="center"
+              key={index}
             >
               <Card data={a} />
             </GridItem>
           ))}
         {!props.loading &&
           state.input !== "" &&
-          searchFilteredList.map((a) => (
+          searchFilteredList.map((a, index) => (
             <GridItem
               h="380px"
               display="flex"
               justifyContent="center"
               alignItems="center"
+              key={index}
             >
               <Card data={a} />
             </GridItem>
