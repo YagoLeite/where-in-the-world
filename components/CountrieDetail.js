@@ -46,22 +46,24 @@ const CountrieDetail = () => {
         );
         return (
           <Flex h="100%" w="100%" justifyContent="center" alignItems="center">
-            <Button
+            <Text
               className="test"
               bg="transparent"
               _hover={{ bg: "transparent" }}
               _active={{ bg: "transparent" }}
               borderWidth="3px"
-              w="fit-content"
+              w="140px"
+              textAlign="center"
               h="fit-content"
               p="2%"
               shadow="lg"
+              cursor="pointer"
               key={index}
               onClick={() => route.push(borderCountriesToName[0]?.name)}
               wordBreak="break-all"
             >
               {borderCountriesToName[0]?.name}
-            </Button>
+            </Text>
           </Flex>
         );
       })
@@ -121,12 +123,9 @@ const CountrieDetail = () => {
                     <HStack w="100%" h="100%">
                       <Text fontWeight={800}>Border Countries:</Text>
                       <Grid
-                        bg="red"
-                        maxW="100%"
-                        w="100%"
-                        h="100%"
                         gap={2}
-                        gridTemplateColumns="repeat(auto-fit, minmax(50px, 300px))"
+                        maxW="100%"
+                        gridTemplateColumns="repeat(auto-fit, minmax(50px, 150px))"
                       >
                         {borderCountries}
                       </Grid>
