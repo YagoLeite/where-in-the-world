@@ -15,12 +15,15 @@ const Header = () => {
   const { toggleColorMode: toggleMode } = useColorMode();
   const text = useColorModeValue("dark", "light");
   const SwitchIcon = useColorModeValue(BsMoon, BsSun);
+  const bg = useColorModeValue("hsl(0, 0%, 98%)", "gray.800");
 
   return (
-    <Flex w="100%" justify="space-between" align="center">
-      <Heading h="100%" fontWeight={800} fontSize={["20px", "24px", "28px"]}>
-        Where in the world
-      </Heading>
+    <Flex bg={bg} w="100%" justify="space-between">
+      <Link href="/">
+        <Heading fontWeight={800} fontSize={["20px", "24px", "28px"]}>
+          Where in the world
+        </Heading>
+      </Link>
       <Flex h="100%" justify="center" align="center">
         <Link
           isExternal

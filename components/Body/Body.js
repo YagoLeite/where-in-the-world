@@ -15,7 +15,7 @@ import CountriesMenu from "../CountriesMenu";
 import { CountriesState } from "../../context/Context";
 import Search from "../Search";
 
-const Body = (props) => {
+const Body = ({ loading }) => {
   const { state, region } = CountriesState();
   const text = useColorModeValue("dark", "light");
   const bg = useColorModeValue("hsl(0, 0%, 98%)", "gray.800");
@@ -38,15 +38,27 @@ const Body = (props) => {
   );
 
   return (
-    <Box bg={bg} h="100vh" w="100%" p="3%">
-      <Stack
+    <Flex
+      direction="column"
+      gap={["10px", "15px", "30px"]}
+      bg={bg}
+      h="100vh"
+      w="100%"
+    >
+      <Flex
         direction={["column", "column", "row"]}
         justifyContent="space-between"
+        w="100%"
+        gap={["10px", "15px", "30px"]}
       >
-        <Search countriesList={countriesList} />
-        <CountriesMenu />
-      </Stack>
-      {props.loading && (
+        <Flex w={["100%", "100%", "50%", "50%"]}>
+          <Search countriesList={countriesList} />
+        </Flex>
+        <Flex w={["100%", "100%", "30%", "30%"]}>
+          <CountriesMenu />
+        </Flex>
+      </Flex>
+      {loading && (
         <Flex h="100%" w="100%" justifyContent="center" alignItems="center">
           <Spinner
             thickness="4px"
@@ -57,8 +69,12 @@ const Body = (props) => {
           />
         </Flex>
       )}
-      <Grid h="100%" gridTemplateColumns="repeat(auto-fit, minmax(290px, 1fr))">
-        {!props.loading &&
+      <Grid
+        h="100%"
+        gap={["10px", "30px", "30px"]}
+        gridTemplateColumns="repeat(auto-fit, minmax(300px, 1fr))"
+      >
+        {!loading &&
           state.input === "" &&
           countriesList?.map((a, index) => (
             <GridItem
@@ -71,7 +87,7 @@ const Body = (props) => {
               <Card data={a} />
             </GridItem>
           ))}
-        {!props.loading &&
+        {!loading &&
           state.input !== "" &&
           searchFilteredList.map((a, index) => (
             <GridItem
@@ -85,7 +101,7 @@ const Body = (props) => {
             </GridItem>
           ))}
       </Grid>
-    </Box>
+    </Flex>
   );
 };
 

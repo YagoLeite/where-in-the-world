@@ -11,13 +11,17 @@ const CountriesMenu = () => {
     <Menu>
       <MenuButton
         borderWidth="1px"
-        shadow="lg"
         _hover={{ bg: "transparent" }}
         _active={{ bg: "transparent" }}
         bg="transparent"
         as={Button}
         rightIcon={<IoIosArrowDown />}
-        maxW="300px"
+        w="100%"
+        display="flex"
+        justifyContent="left"
+        align="left"
+        textAlign={["left", "left", "center", "center"]}
+        boxShadow="sm"
       >
         Filter by Region
       </MenuButton>

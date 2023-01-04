@@ -11,7 +11,7 @@ const Search = () => {
   };
 
   return (
-    <InputGroup shadow="lg" w="100%" maxW="400px">
+    <InputGroup w="100%" boxShadow="sm">
       <InputLeftElement color="gray.500">
         <FiSearch />
       </InputLeftElement>
