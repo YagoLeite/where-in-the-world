@@ -19,7 +19,7 @@ export default function Index() {
         direction="column"
         w="100%"
         py={["10px", "15px", "20px"]}
-        px={["15px", "15px", "20px"]}
+        px={["15px", "50px", "15%", "20px"]}
         maxW="1900px"
         gap={["10px", "15px", "30px"]}
       >
