@@ -5,13 +5,7 @@ import Test from "../../components/Test";
 
 const Wrapper = () => {
   return (
-    <VStack
-      h="100%"
-      w="100%"
-      justifyContent="center"
-      alignItems="center"
-      px="3%"
-    >
+    <VStack h="100%" w="100%" justifyContent="center" alignItems="center">
       <CountrieDetail />
       {/* <Test /> */}
     </VStack>

@@ -47,27 +47,27 @@ const CountrieDetail = () => {
         return (
           <Flex
             key={index}
-            h="100%"
-            w="100%"
+            h="fit-content"
+            w="fit-content"
             justifyContent="center"
             alignItems="center"
           >
             <Text
-              className="test"
               bg="transparent"
-              _hover={{ bg: "transparent" }}
-              _active={{ bg: "transparent" }}
-              borderWidth="3px"
-              w="150px"
+              borderColor="gray.400"
+              fontSize={["10px", "13px", "15px"]}
+              borderWidth="1px"
+              w={["100px", "130px", "150px"]}
               textAlign="center"
-              h="fit-content"
-              p="2%"
-              shadow="lg"
+              overflowX="auto"
+              shadow="sm"
               cursor="pointer"
               onClick={() => route.push(borderCountriesToName[0]?.name)}
               wordBreak="break-all"
             >
-              {borderCountriesToName[0]?.name}
+              {borderCountriesToName[0]?.name.length > 20
+                ? borderCountriesToName[0]?.name.substring(0, 17) + "..."
+                : borderCountriesToName[0]?.name}
             </Text>
           </Flex>
         );
@@ -78,7 +78,7 @@ const CountrieDetail = () => {
   }
 
   return (
-    <Box w="100%" h="100%">
+    <Flex direction="column" w="100%" h="100%">
       {loading && (
         <Flex
           h="calc(100vh - 4.5rem)"
@@ -96,13 +96,13 @@ const CountrieDetail = () => {
       )}
       {loadedData && !loading && (
         <ScaleFade in={isOpen} initialScale={0.9} offsetY="20px">
-          <Stack direction="column" gap={2}>
+          <Flex direction="column" gap="15px" h="100%">
             <Button
               bg="transparent"
               maxW="100px"
               alignSelf="left"
               borderWidth="1px"
-              shadow="lg"
+              shadow="sm"
               _hover={{ bg: "transparent" }}
               _active={{ bg: "transparent" }}
               onClick={() => route.back()}
@@ -110,40 +110,70 @@ const CountrieDetail = () => {
             >
               Voltar
             </Button>
-            <Stack gap={3} direction={["column", "column", "column", "row"]}>
+            <Flex
+              gap={["15px", "30px"]}
+              direction={["column", "column", "column", "row"]}
+              h="100%"
+            >
               {loadedData && (
-                <Flex>
-                  <Image src={loadedData[0].flag} objectFit="cover" />
+                <Flex w="100%">
+                  <Image
+                    h="100%"
+                    w="100%"
+                    src={loadedData[0].flag}
+                    alt="Country Flag"
+                    objectFit="cover"
+                  />
                 </Flex>
               )}
-              <Grid
-                w="100%"
-                gap={3}
-                gridTemplateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)"]}
-              >
-                {!loading && loadedData && <LeftDetail data={loadedData[0]} />}
-                {!loading && loadedData && <RightDetail data={loadedData[0]} />}
-                {!loading && loadedData && (
-                  <GridItem display="flex" gap={2} colStart={1} colEnd={-1}>
-                    <HStack w="100%" h="100%">
-                      <Text fontWeight={800}>Border Countries:</Text>
-                      <Grid
-                        gap={2}
-                        maxW="100%"
-                        gridTemplateColumns="repeat(auto-fit, minmax(50px, 150px))"
-                      >
-                        {borderCountries}
-                      </Grid>
-                    </HStack>
-                  </GridItem>
-                )}
-              </Grid>
-            </Stack>
-          </Stack>
+
+              <Flex w="100%" direction="column" h="100%" gap="15px">
+                <Flex gap="10px" direction={["column", "row", "row", "row"]}>
+                  <LeftDetail data={loadedData[0]} />
+                  <RightDetail data={loadedData[0]} />
+                </Flex>
+                <Flex gap="10px" h="100%" align="center" justify="left">
+                  <Flex w="fit-content">
+                    <Text fontWeight={800} w="100%">
+                      Border Countries:
+                    </Text>
+                  </Flex>
+                  <Flex maxW="600px" wrap="wrap" gap="5px">
+                    {borderCountries}
+                  </Flex>
+                </Flex>
+              </Flex>
+            </Flex>
+          </Flex>
         </ScaleFade>
       )}
-    </Box>
+    </Flex>
   );
 };
 
 export default CountrieDetail;
+
+// <Grid
+// w="100%"
+// gap={3}
+// gridTemplateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)"]}
+// >
+// {!loading && loadedData && <LeftDetail data={loadedData[0]} />}
+// {!loading && loadedData && <RightDetail data={loadedData[0]} />}
+// {!loading && loadedData && (
+//   <GridItem display="flex" gap={2} colStart={1} colEnd={-1}>
+//     <HStack w="100%" h="100%">
+//       <Text fontWeight={800}>Border Countries:</Text>
+//       <Grid
+//         gap={2}
+//         maxW="100%"
+//         gridTemplateColumns="repeat(auto-fit, minmax(50px, 150px))"
+//       >
+//         {/* <Flex wrap="wrap"> */}
+//         {borderCountries}
+//         {/* </Flex> */}
+//       </Grid>
+//     </HStack>
+//   </GridItem>
+// )}
+// </Grid>
