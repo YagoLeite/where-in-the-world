@@ -3,7 +3,7 @@ import React from "react";
 import Header from "../../components/Header/Header";
 import Wrapper from "./Wrapper";
 
-export default function index() {
+export default function Index() {
   const bg = useColorModeValue("hsl(0, 0%, 98%)", "gray.800");
   return (
     <Flex

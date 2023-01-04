@@ -32,7 +32,7 @@ const Card = ({ data }) => {
           src={data.flag}
         />
       </Flex>
-      <Flex direction="column" gap="5px">
+      <Flex direction="column" gap="5px" pl="10px">
         <Text fontWeight={700} fontSize="20px">
           {data?.name}
         </Text>

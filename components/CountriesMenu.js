@@ -5,8 +5,7 @@ import React from "react";
 import { CountriesState } from "../context/Context";
 
 const CountriesMenu = () => {
-  const { region, setRegion } = CountriesState();
-  console.log(region);
+  const { setRegion } = CountriesState();
   return (
     <Menu>
       <MenuButton
