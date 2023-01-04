@@ -15,23 +15,23 @@ const LeftDetail = (props) => {
       </Text>
       <Flex gap={1}>
         <Text fontWeight={600}>Native Name: </Text>
-        <Text fontWeight={300}>{props.data?.nativeName}</Text>
+        <Text fontWeight={400}>{props.data?.nativeName}</Text>
       </Flex>
       <Flex gap={1}>
         <Text fontWeight={600}>Population: </Text>
-        <Text fontWeight={300}>{props.data?.population}</Text>
+        <Text fontWeight={400}>{props.data?.population}</Text>
       </Flex>
       <Flex gap={1}>
         <Text fontWeight={600}>Region: </Text>
-        <Text fontWeight={300}>{props.data?.region}</Text>
+        <Text fontWeight={400}>{props.data?.region}</Text>
       </Flex>
       <Flex gap={1}>
         <Text fontWeight={600}>Sub Region: </Text>
-        <Text fontWeight={300}>{props.data?.subregion}</Text>
+        <Text fontWeight={400}>{props.data?.subregion}</Text>
       </Flex>
       <Flex gap={1}>
         <Text fontWeight={600}>Capital: </Text>
-        <Text fontWeight={300}>{props.data?.capital}</Text>
+        <Text fontWeight={400}>{props.data?.capital}</Text>
       </Flex>
     </VStack>
   );

@@ -9,6 +9,7 @@ const RightDetail = (props) => {
       w="100%"
       h="100%"
       fontSize="14px"
+      mt={[0, "35px", "30px", "30px"]}
     >
       <Flex gap={1}>
         <Text fontWeight={600}>Top Level Domain:</Text>
