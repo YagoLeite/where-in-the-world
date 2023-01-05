@@ -18,7 +18,7 @@ const Header = () => {
   const bg = useColorModeValue("hsl(0, 0%, 98%)", "gray.800");
 
   return (
-    <Flex bg={bg} w="100%" justify="space-between">
+    <Flex bg={bg} w="100%" justify="space-between" align="center">
       <Link href="/">
         <Heading fontWeight={800} fontSize={["20px", "24px", "28px"]}>
           Where in the world
