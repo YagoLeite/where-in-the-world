@@ -87,7 +87,7 @@ const Body = ({ loading }) => {
             color="red"
           >
             <Text textAlign="center">
-              The API I'm using may be going through some issues.
+              {`The API I'm using may be going through some issues.`}
             </Text>
             <Text textAlign="center">Sorry for the inconvenience</Text>
           </Flex>
