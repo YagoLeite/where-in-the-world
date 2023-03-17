@@ -37,6 +37,8 @@ const Body = ({ loading }) => {
     country.name.toLowerCase().includes(state.input.toLowerCase())
   );
 
+  console.log(countriesList);
+
   return (
     <Flex
       direction="column"
@@ -74,6 +76,22 @@ const Body = ({ loading }) => {
         gap={["10px", "30px", "30px"]}
         gridTemplateColumns="repeat(auto-fit, minmax(300px, 1fr))"
       >
+        {!loading && countriesList.length === 0 && (
+          <Flex
+            direction="column"
+            h="100%"
+            w="100%"
+            align="center"
+            fontSize={["15px", "20px", "25px"]}
+            fontWeight="700"
+            color="red"
+          >
+            <Text textAlign="center">
+              The API I'm using may be going through some issues.
+            </Text>
+            <Text textAlign="center">Sorry for the inconvenience</Text>
+          </Flex>
+        )}
         {!loading &&
           state.input === "" &&
           countriesList?.map((a, index) => (

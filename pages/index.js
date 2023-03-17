@@ -1,4 +1,4 @@
-import { Box, Flex, useColorModeValue } from "@chakra-ui/react";
+import { Flex, useColorModeValue } from "@chakra-ui/react";
 import Head from "next/head";
 import Header from "../components/Header/Header";
 import Body from "../components/Body/Body";
@@ -7,7 +7,7 @@ import { CountriesState } from "../context/Context";
 import { useEffect } from "react";
 
 export default function Home() {
-  const { state, dispatch } = CountriesState();
+  const { dispatch } = CountriesState();
   const { loadedData, loading } = useFetch("https://restcountries.com/v2/all");
   const bg = useColorModeValue("hsl(0, 0%, 98%)", "gray.800");
 
@@ -16,6 +16,8 @@ export default function Home() {
       dispatch({ type: "FIRST-LOADING", value: loadedData });
     }
   }, [loadedData, dispatch]);
+
+  console.log(loadedData);
 
   return (
     <Flex

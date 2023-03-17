@@ -1,18 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
-  Box,
-  Stack,
-  VStack,
   Text,
-  Grid,
-  GridItem,
   Flex,
   Spinner,
   Image,
   ScaleFade,
   useDisclosure,
   Button,
-  HStack,
 } from "@chakra-ui/react";
 import useFetch from "../hooks/useFetch";
 import { CountriesState } from "../context/Context";
@@ -23,12 +17,30 @@ import RightDetail from "./details/RightDetail";
 
 const CountrieDetail = () => {
   const { isOpen, onToggle } = useDisclosure();
+  const [loadedData, setLoadedData] = useState([{}]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const route = useRouter();
   const name = route.query.countryName;
   console.log(name);
-  const { loadedData, loading } = useFetch(
-    `https://restcountries.com/v2/name/${route.query.countryName}`
-  );
+  // const { loadedData, loading } = useFetch(
+  //   `https://restcountries.com/v2/name/${name}`
+  // );
+
+  useEffect(() => {
+    if (route.query.countryName) {
+      setLoading(true);
+      fetch(`https://restcountries.com/v2/name/${route.query.countryName}`)
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+        })
+        .then((data) => setLoadedData(data))
+        .catch((error) => setError(error))
+        .finally(() => setLoading(false));
+    }
+  }, [route.query.countryName]);
 
   const { state } = CountriesState();
 
@@ -36,11 +48,23 @@ const CountrieDetail = () => {
     if (loadedData && !isOpen) {
       onToggle();
     }
-  }, [loadedData]);
+  }, [loadedData, isOpen, onToggle]);
+
+  const borderCountrieS = loadedData[0].borders?.map((border, index) => {
+    const borderCountriesToName = state.all.filter(
+      (country) => country.alpha3Code === border
+    );
+
+    return borderCountriesToName[0]?.name.length > 20
+      ? borderCountriesToName[0]?.name.substring(0, 17) + "..."
+      : borderCountriesToName[0]?.name;
+  });
+
+  console.log(borderCountrieS);
 
   if (loadedData) {
     const borderCountries = loadedData[0].borders ? (
-      loadedData[0].borders.map((border, index) => {
+      loadedData[0].borders?.map((border, index) => {
         const borderCountriesToName = state.all.filter(
           (country) => country.alpha3Code === border
         );
@@ -139,7 +163,36 @@ const CountrieDetail = () => {
                     </Text>
                   </Flex>
                   <Flex maxW="600px" wrap="wrap" gap="5px">
-                    {borderCountries}
+                    {/* {borderCountries} */}
+                    {borderCountrieS?.map((borderName, index) => {
+                      return (
+                        <Flex
+                          key={index}
+                          h="fit-content"
+                          w="fit-content"
+                          justifyContent="center"
+                          alignItems="center"
+                        >
+                          <Text
+                            bg="transparent"
+                            borderColor="gray.400"
+                            fontSize={["10px", "13px", "15px"]}
+                            borderWidth="1px"
+                            w={["100px", "130px", "150px"]}
+                            textAlign="center"
+                            overflowX="auto"
+                            shadow="sm"
+                            cursor="pointer"
+                            onClick={() =>
+                              route.push(borderCountriesToName[0]?.name)
+                            }
+                            wordBreak="break-all"
+                          >
+                            {borderName}
+                          </Text>
+                        </Flex>
+                      );
+                    })}
                   </Flex>
                 </Flex>
               </Flex>
@@ -152,28 +205,3 @@ const CountrieDetail = () => {
 };
 
 export default CountrieDetail;
-
-// <Grid
-// w="100%"
-// gap={3}
-// gridTemplateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)"]}
-// >
-// {!loading && loadedData && <LeftDetail data={loadedData[0]} />}
-// {!loading && loadedData && <RightDetail data={loadedData[0]} />}
-// {!loading && loadedData && (
-//   <GridItem display="flex" gap={2} colStart={1} colEnd={-1}>
-//     <HStack w="100%" h="100%">
-//       <Text fontWeight={800}>Border Countries:</Text>
-//       <Grid
-//         gap={2}
-//         maxW="100%"
-//         gridTemplateColumns="repeat(auto-fit, minmax(50px, 150px))"
-//       >
-//         {/* <Flex wrap="wrap"> */}
-//         {borderCountries}
-//         {/* </Flex> */}
-//       </Grid>
-//     </HStack>
-//   </GridItem>
-// )}
-// </Grid>
